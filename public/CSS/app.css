@@ -1,0 +1,8 @@
+body {
+    padding-top: 56px; /* Espaço para o navbar fixo */
+}
+footer {
+    padding: 1rem;
+    background: #f8f9fa;
+    text-align: center;
+}
