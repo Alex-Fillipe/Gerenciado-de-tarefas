@@ -25,6 +25,7 @@ class TarefaController extends Controller
             'titulo' => 'required|string|max:255',
             'descricao' => 'nullable|string',
             'status' => 'required|in:pendente,concluída',
+            'prioridade' => 'required|in:baixa,media,alta',
         ]);
 
         Tarefa::create($request->all());
@@ -43,6 +44,7 @@ class TarefaController extends Controller
             'titulo' => 'required|string|max:255',
             'descricao' => 'nullable|string',
             'status' => 'required|in:pendente,concluída',
+            'prioridade' => 'nullable|in:baixa,media,alta',
         ]);
 
         $tarefa = Tarefa::findOrFail($id);

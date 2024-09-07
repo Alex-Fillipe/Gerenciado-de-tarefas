@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Criar Nova Tarefa</h1>
+    <h1>Criar Nova Tarefa <img src="{{ asset('imagens/tarefa.png') }}" alt="Imagem da Tarefa" class="img-fluid" style="max-width: 100px;"></h1>
 
     <form action="{{ route('tarefas.store') }}" method="POST">
         @csrf
@@ -30,6 +30,17 @@
                 <option value="concluída" {{ old('status') == 'concluída' ? 'selected' : '' }}>Concluída</option>
             </select>
             @error('status')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="prioridade">Prioridade:</label>
+            <select class="form-control" id="prioridade" name="prioridade">
+                <option value="baixa" {{ old('prioridade') == 'baixa' ? 'selected' : '' }}>Baixa</option>
+                <option value="media" {{ old('prioridade') == 'media' ? 'selected' : '' }}>Media</option>
+                <option value="alta" {{ old('prioridade') == 'alta' ? 'selected' : '' }}>Alta</option>
+            </select>
+            @error('prioridade')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>

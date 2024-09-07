@@ -12,5 +12,6 @@ class Tarefa extends Model
         'titulo',
         'descricao',
         'status',
+        'prioridade'
     ];
 }

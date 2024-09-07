@@ -4,8 +4,8 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mb-4">Lista de Tarefas</h1>
-
+        <h1 class="mb-4">Lista de Tarefas <img src="{{ asset('imagens/tarefa.png') }}" alt="Imagem da Tarefa" class="img-fluid" style="max-width: 100px;"></h1>
+        
         <div class="card">
             <div class="card-header">
                 Tarefas
@@ -31,6 +31,7 @@
                     @foreach ($tarefas as $tarefa)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div>
+                            <img src="{{ asset('imagens/' . ($tarefa->prioridade === 'baixa' ? 'baixa.png' : ($tarefa->prioridade === 'media' ? 'media.png' : 'alta.png'))) }}" alt="{{ $tarefa->prioridade }}" title="{{ $tarefa->prioridade }}" class="img-fluid" style="max-width: 30px;">
                                 <strong>{{ $tarefa->titulo }}</strong> - {{ $tarefa->status }}
                             </div>
                             <div>
@@ -58,7 +59,8 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="modalLabel-{{ $tarefa->id }}">Detalhes da Tarefa</h5>
+                                        <h5 class="modal-title" id="modalLabel-{{ $tarefa->id }}">Detalhes da Tarefa</h5>&nbsp &nbsp &nbsp &nbsp
+                                        <img src="{{ asset('imagens/' . ($tarefa->prioridade === 'baixa' ? 'baixa.png' : ($tarefa->prioridade === 'media' ? 'media.png' : 'alta.png'))) }}" alt="{{ $tarefa->prioridade }}" title="{{ $tarefa->prioridade }}" class="img-fluid" style="max-width: 30px;">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -115,7 +117,9 @@
                 let listItem = `
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div>
-                            <strong>${tarefa.titulo}</strong> - ${tarefa.status}
+                        <img src="/imagens/${tarefa.prioridade === 'baixa' ? 'baixa.png' : (tarefa.prioridade === 'media' ? 'media.png' : 'alta.png')}" 
+                                 alt="${tarefa.prioridade}"  title="${tarefa.prioridade}" class="img-fluid" style="max-width: 30px;"> 
+                            <strong>${tarefa.titulo}</strong> - ${tarefa.status}                                                        
                         </div>
                         <div>
                             <a href="/tarefas/${tarefa.id}/edit" class="btn btn-warning btn-sm">Editar</a>
@@ -147,7 +151,8 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="modalLabel-${tarefa.id}">Detalhes da Tarefa</h5>
+                                                <h5 class="modal-title" id="modalLabel-${tarefa.id}">Detalhes da Tarefa</h5>&nbsp &nbsp &nbsp &nbsp
+                                                 <img src="{{ asset('imagens/' . ($tarefa->prioridade === 'baixa' ? 'baixa.png' : ($tarefa->prioridade === 'media' ? 'media.png' : 'alta.png'))) }}" alt="{{ $tarefa->prioridade }}" title="{{ $tarefa->prioridade }}" class="img-fluid" style="max-width: 30px;">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
