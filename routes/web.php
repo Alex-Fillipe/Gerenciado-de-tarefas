@@ -16,3 +16,4 @@ use App\Http\Controllers\TarefaController;
  Route::put('tarefas/{id}', [TarefaController::class, 'update'])->name('tarefas.update');
  Route::delete('/tarefas/{tarefa}', [TarefaController::class, 'destroy'])->name('tarefas.destroy');
  Route::post('tarefas/{id}/concluida', [TarefaController::class, 'concluir'])->name('tarefas.concluida');
+ Route::get('/tarefas/buscar', [TarefaController::class, 'buscar'])->name('tarefas.buscar');

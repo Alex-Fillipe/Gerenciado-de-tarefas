@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class TarefaController extends Controller
 {
-    
+
     public function index()
-    {   
+    {
 
         $tarefas = Tarefa::all();
         return view('tarefas.index', compact('tarefas'));
@@ -59,16 +59,23 @@ class TarefaController extends Controller
     }
 
     public function concluir($id)
-{
-     
-    $tarefa = Tarefa::findOrFail($id);
+    {
 
-    
-    if ($tarefa->status == 'concluída') {
-        return redirect()->route('tarefas.index')->with('warning', 'A tarefa já está concluída!');
-    } 
-    $tarefa->update(['status' => 'concluída']); 
-    return redirect()->route('tarefas.index')->with('success', 'Tarefa marcada como concluída!');
-}
+        $tarefa = Tarefa::findOrFail($id);
 
+
+        if ($tarefa->status == 'concluída') {
+            return redirect()->route('tarefas.index')->with('warning', 'A tarefa já está concluída!');
+        }
+        $tarefa->update(['status' => 'concluída']);
+        return redirect()->route('tarefas.index')->with('success', 'Tarefa marcada como concluída!');
+    }
+
+    public function buscar(Request $request)
+    {
+        $query = $request->input('search');
+        $tarefas = Tarefa::where('titulo', 'like', "%{$query}%")->get();
+
+        return response()->json($tarefas);
+    }
 }
