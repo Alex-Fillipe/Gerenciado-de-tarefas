@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Tarefa;
 use Illuminate\Http\Request;
 
+use function Laravel\Prompts\alert;
+
 class TarefaController extends Controller
 {
 
@@ -75,8 +77,17 @@ class TarefaController extends Controller
 
     public function buscar(Request $request)
     {
+        
         $query = $request->input('search');
-        $tarefas = Tarefa::where('titulo', 'like', "%{$query}%")->get();
+        $prioridade = $request->input('prioridade');
+
+        $tarefas = Tarefa::where('titulo', 'like', "%{$query}%");
+
+        if ($prioridade) {
+            $tarefas = $tarefas->where('prioridade', $prioridade);
+        }
+
+        $tarefas = $tarefas->get();
 
         return response()->json($tarefas);
     }
