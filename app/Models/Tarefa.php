@@ -12,6 +12,12 @@ class Tarefa extends Model
         'titulo',
         'descricao',
         'status',
-        'prioridade'
+        'prioridade',
+        'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
